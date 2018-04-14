@@ -3,6 +3,7 @@ package com.algaworks.festa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,5 +31,21 @@ public class ConvidadosController {
 		this.convidados.save(convidado);
 		return "redirect:/convidados";
 	}
+	
+	@PostMapping("/excluir")
+	public String excluir(Convidado convidado) {
+		this.convidados.delete(convidado);
+		return "redirect:/convidados";
+	}
+	
+	@GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+         
+		convidados.deleteById(id);
+        //service.delete(id);
+		System.out.println("Passou no delete" + id);
+         
+		return "redirect:/convidados";
+    }
 
 }

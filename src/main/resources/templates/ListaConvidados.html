@@ -39,11 +39,31 @@
 					<tr th:each="convidado: ${convidados}">
 						<td th:text="${convidado.nome}"></td>
 						<td th:text="${convidado.quantidadeAcompanhantes}"></td>
+						<td>
+							<a class="glyphicon glyphicon-trash" th:href="@{/convidados/delete/{id}(id=${convidado.id})}"></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	
+	
+	<div class="modal-content panel panel-default" hidden="true" id="modalExcluir" style="margin: 50px 300px;">
+  		<div class="modal-header">
+ 			<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+ 			<h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+ 		</div>
+		 	<!-- Implemente a chamada do Ajax -->
+		 <div class="modal-body">Deseja realmente excluir este item?
+		    	<input id="modal-deletar-cliente-id" type="hidden" name="id"/> 
+		 </div>
+		
+		 <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" id="deleteCliente">Sim</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+		 </div>
+ 	</div>
 
 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
